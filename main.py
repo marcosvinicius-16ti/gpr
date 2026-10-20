@@ -1,5 +1,6 @@
 from character.hero import criar_heroi
 from events.daily import executar_evento_diario
+from events.boss import enfrentar_boss
 
 if __name__ == "__main__":
     jogador = criar_heroi()
@@ -26,6 +27,7 @@ if __name__ == "__main__":
         # quando for dia 5 (boss)
         if dia == 5:
             print("alguma coisa apareceu no seu caminho, ele nao parece ser humano...")
+            jogador = enfrentar_boss(jogador)
         else:
             jogador = executar_evento_diario(jogador)
 
