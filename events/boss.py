@@ -1,22 +1,28 @@
-def enfrentar_boss(jogador):
-    print("\n UMA FIGURA MACABRA APARECE NA SUA FRENTE... ela parece\nquerer dizer algo")
-    print("\n ???: responda minhas perguntas e ira sair vivo")
-    
-    acertos = 0
-    
-    # pergunta 1
-    
-    print("\n PRIMEIRA PERGUNTA")
-    print("\n encontrei 10 aventureiros antes, 4 foram decaptados,quantos restaram?")
-    print ("1)6 aventureiros")
-    print("2) eu poupei a vida deles")
-    print ("3) 2 aventureiros")
-    
-    resposta1 = input("\n Qual sua resposta? 1,2 ou 3?").strip()
-    
-    if resposta1 =="2":
-        print("\n vc se salvou dessa vez,mas nao se preocupe eu voltarei...")
-        acertos =+1
+def iniciar_boss():
+    """Retorna os textos de introdução da Boss Fight."""
+    textos = [
+        "\n UMA FIGURA MACABRA APARECE NA SUA FRENTE... ela parece querer dizer algo",
+        "\n ???: responda minhas perguntas e ira sair vivo",
+        "\n --- PRIMEIRA PERGUNTA ---",
+        "encontrei 10 aventureiros antes, 4 foram decaptados, quantos restaram?",
+        "1) 6 aventureiros",
+        "2) eu poupei a vida deles",
+        "3) 2 aventureiros",
+        "\n Qual sua resposta? 1, 2 ou 3?",
+    ]
+    return textos
+
+
+def processar_resposta_boss(resposta, jogador):
+    """Processa a resposta do jogador para a pergunta do Boss."""
+    resposta = resposta.strip()
+
+    if resposta == "1":
+        mensagem = "\n vc se salvou dessa vez, mas nao se preocupe eu voltarei..."
+        acertou = True
     else:
-        print("\n que pena, esperava mais de voce\n a figura lentamente se aproxima, e o fim...")
-    return jogador
+        mensagem = "\n que pena, esperava mais de voce\n a figura lentamente se aproxima com um sorriso agoniante, e o fim..."
+        jogador["vida_atual"] = 0
+        acertou = False
+
+    return jogador, mensagem, acertou
